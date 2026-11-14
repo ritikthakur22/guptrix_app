@@ -28,7 +28,7 @@ class ShareReceiverActivity : AppCompatActivity() {
                 )
                 
                 CoroutineScope(Dispatchers.IO).launch {
-                    AppDatabase.getDatabase(this@ShareReceiverActivity).noteDao().insert(note)
+                    AppDatabase.getDatabase(this@ShareReceiverActivity).noteDao().insertNote(note)
                     runOnUiThread {
                         Toast.makeText(this@ShareReceiverActivity, "Saved as Draft in Guptrix", Toast.LENGTH_SHORT).show()
                         finish()
