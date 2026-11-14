@@ -26,6 +26,12 @@ class CryptoManager {
         return keyGen.generateKey()
     }
 
+    fun generateSalt(length: Int = 16): ByteArray {
+        val salt = ByteArray(length)
+        secureRandom.nextBytes(salt)
+        return salt
+    }
+
     fun deriveKeyFromPassphrase(passphrase: String, salt: ByteArray): SecretKey {
         val keySpec = PBEKeySpec(passphrase.toCharArray(), salt, PBKDF2_ITERATIONS, KEY_SIZE_BITS)
         val factory = SecretKeyFactory.getInstance(PBKDF2_ALGORITHM)
