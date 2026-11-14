@@ -186,7 +186,16 @@ data class NoteEntity(
 
 ---
 
-## 7. What is Left to the Builder
+## 7. Settled Architecture Decisions (Builder Check)
+
+1. **Envelope Encryption:** A random 256-bit AES Data Encryption Key (DEK) encrypts note data. The DEK is wrapped and stored in Android Keystore and EncryptedSharedPreferences, protected by the user's master PIN or biometric authentication.
+2. **Database Storage & Search:** SQLCipher (`android-database-sqlcipher`) encrypts the entire SQLite database file at rest with AES-256. Inside the open database, Room performs instant full-text and `LIKE` queries at 120Hz without decrypting entire tables into memory.
+3. **Canvas Drawing Serialization:** Native Compose stroke paths (points, colors, stroke width) serialized as compact JSON. Clean and lightweight without Excalidraw web overhead.
+4. **Database Versioning:** Destructive migration for pre-release local databases (`fallbackToDestructiveMigration()`).
+
+---
+
+## 8. What is Left to the Builder
 
 - Choice between Ktor client and Retrofit for the optional backend synchronization module.
 - Exact stroke smoothing algorithm (Bézier curves vs quadTo) for the Compose drawing canvas.
