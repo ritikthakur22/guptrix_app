@@ -8,7 +8,7 @@ Currently, only the `main` branch is actively supported for security updates.
 
 Security is a core feature of Guptrix. If you discover a security vulnerability, we kindly ask you to report it privately rather than opening a public issue. 
 
-Please send a detailed report to the security team at `security@guptrix.example.com`. 
+Please report security issues privately via [GitHub Security Advisories](https://github.com/ritikthakur22/guptrix_app/security/advisories/new) or directly contact the maintainer at [GitHub (@ritikthakur22)](https://github.com/ritikthakur22). 
 
 Your report should include:
 - A description of the vulnerability.

@@ -8,12 +8,17 @@ android {
     namespace = "com.guptrix.app"
     compileSdk = 36
 
+    val keystorePath = System.getenv("KEYSTORE_PATH") ?: "../keystore/release.keystore"
+    val keystoreFile = file(keystorePath)
+
     signingConfigs {
         create("release") {
-            storeFile = file("../keystore/new-upload-key.jks")
-            storePassword = ""
-            keyAlias = "upload"
-            keyPassword = ""
+            if (keystoreFile.exists()) {
+                storeFile = keystoreFile
+                storePassword = System.getenv("KEYSTORE_PASSWORD") ?: ""
+                keyAlias = System.getenv("KEY_ALIAS") ?: "guptrix"
+                keyPassword = System.getenv("KEY_PASSWORD") ?: ""
+            }
         }
     }
 
@@ -38,7 +43,10 @@ android {
         release {
             isMinifyEnabled = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
-            signingConfig = signingConfigs.getByName("release")
+            val releaseSigning = signingConfigs.getByName("release")
+            if (releaseSigning.storeFile?.exists() == true) {
+                signingConfig = releaseSigning
+            }
         }
     }
     compileOptions {
