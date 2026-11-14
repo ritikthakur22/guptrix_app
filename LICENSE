@@ -1,21 +1,26 @@
-MIT License
+# Guptrix App — Software License & Proprietary Rights Agreement
 
-Copyright (c) 2026 Ritik Thakur & Guptrix Contributors
+Copyright (c) 2026 Ritik Thakur. All rights reserved.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+## 1. Proprietary Nature of the Software
+The Guptrix Android application, UI/UX designs, layouts, Room database persistence models, WebView integrations, client-side caching bridges, assets, branding, and all associated source code and documentation (collectively, "the Software"), are the exclusive intellectual property of Ritik Thakur ("the Owner").
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+## 2. Strict Prohibition on Unauthorized Use, Modification, and Distribution
+NO PERMISSION IS GRANTED to any individual, company, organization, or entity to use, run, copy, modify, adapt, merge, publish, distribute, sublicense, sell, lease, transfer, host, deploy, decompile, or reverse-engineer this Software or any portion thereof without explicit prior written authorization executed by Ritik Thakur.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+Under no circumstances may you:
+1. **Use or Run:** Use, execute, or operate this Software or any modified build without explicit written permission from the Owner.
+2. **Modify or Create Derivatives:** Modify, adapt, translate, enhance, or create derivative works based upon this Software, its source code, or its application UI/UX designs.
+3. **Copy or Distribute:** Copy, clone, fork, mirror, share, republish, or redistribute any part of this repository, source code, or compiled binaries (including APK and AAB outputs).
+4. **Deploy or Publish:** Publish, upload, host, or distribute the application or any derived builds to the Google Play Store, F-Droid, third-party app stores, or web distribution channels.
+5. **Commercialize or Resell:** Sell, license, rent, monetize, or bundle this Software into any commercial product or third-party service.
+6. **Alter Attribution:** Remove, obscure, or alter any copyright notices, author attribution, or proprietary rights statements.
+
+## 3. Violations & Legal Remedies
+Unauthorized use, modification, reproduction, distribution, or commercial exploitation of this Software constitutes willful copyright infringement and a violation of proprietary intellectual property rights, and will be met with immediate legal enforcement and statutory remedies.
+
+## 4. Inquiries & Official Contact
+For authorization requests, commercial licensing inquiries, or permissions, contact:
+- **Owner & Developer:** Ritik Thakur
+- **GitHub:** [https://github.com/ritikthakur22](https://github.com/ritikthakur22)
+- **Web Platform:** [https://guptrix.netlify.app](https://guptrix.netlify.app)

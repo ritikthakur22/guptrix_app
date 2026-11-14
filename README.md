@@ -1,6 +1,6 @@
 # Guptrix Android Application
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![License: Proprietary](https://img.shields.io/badge/License-Proprietary-red.svg)](LICENSE)
 [![Android SDK](https://img.shields.io/badge/Android%20SDK-API%2023--36-3DDC84?logo=android&logoColor=white)](https://developer.android.com)
 [![Kotlin](https://img.shields.io/badge/Kotlin-1.9.22-7F52FF?logo=kotlin&logoColor=white)](https://kotlinlang.org)
 [![Gradle](https://img.shields.io/badge/Gradle-8.5-02303A?logo=gradle&logoColor=white)](https://gradle.org)
@@ -138,5 +138,7 @@ If no keystore is provided in the environment, Gradle builds an unsigned release
 
 ## 📄 License
 
-This project is open-source and distributed under the terms of the **[MIT License](LICENSE)**.
-Copyright © 2026 Ritik Thakur & Guptrix Contributors.
+This software and its associated UI/UX designs and source code are **Proprietary and Confidential**.
+Copyright © 2026 Ritik Thakur. All Rights Reserved.
+
+Unauthorized copying, modification, distribution, public release, or reverse engineering of this software, via any medium, is strictly prohibited without explicit prior written authorization from Ritik Thakur. Refer to [LICENSE](LICENSE) for full terms.
