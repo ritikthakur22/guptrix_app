@@ -192,6 +192,7 @@ data class NoteEntity(
 2. **Database Storage & Search:** SQLCipher (`android-database-sqlcipher`) encrypts the entire SQLite database file at rest with AES-256. Inside the open database, Room performs instant full-text and `LIKE` queries at 120Hz without decrypting entire tables into memory.
 3. **Canvas Drawing Serialization:** Native Compose stroke paths (points, colors, stroke width) serialized as compact JSON. Clean and lightweight without Excalidraw web overhead.
 4. **Database Versioning:** Destructive migration for pre-release local databases (`fallbackToDestructiveMigration()`).
+5. **Onboarding & Vault Lock (Builder Call):** Direct-to-notes with zero friction. On first launch, the user lands immediately in the notes dashboard to write notes without barrier. A sleek banner encourages setting up a master PIN and biometrics. Under the hood, the database is encrypted from moment one using a device-bound Android Keystore key; setting a PIN or biometric wraps this key with user authentication. Once locked, returning to the app requires the PIN or fingerprint.
 
 ---
 
