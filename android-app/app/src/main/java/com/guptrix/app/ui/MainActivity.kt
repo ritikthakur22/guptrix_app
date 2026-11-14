@@ -1,46 +1,76 @@
 package com.guptrix.app.ui
 
 import android.os.Bundle
+import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.guptrix.app.R
+import androidx.biometric.BiometricPrompt
+import androidx.core.content.ContextCompat
+import com.guptrix.app.crypto.KeystoreVaultManager
+import com.guptrix.app.database.AppDatabase
+import com.guptrix.app.repository.NoteRepository
+import com.guptrix.app.ui.navigation.GuptrixNavHost
+import com.guptrix.app.ui.navigation.Screen
+import com.guptrix.app.ui.theme.GuptrixTheme
 
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var repository: NoteRepository
+    private lateinit var vaultManager: KeystoreVaultManager
+
     override fun onCreate(savedInstanceState: Bundle?) {
-        androidx.core.view.WindowCompat.setDecorFitsSystemWindows(window, false)
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        
-        val rootLayout = findViewById<androidx.constraintlayout.widget.ConstraintLayout>(R.id.root_layout)
-        val bottomNav = findViewById<BottomNavigationView>(R.id.bottom_navigation)
-        
-        androidx.core.view.ViewCompat.setOnApplyWindowInsetsListener(rootLayout) { view, windowInsets ->
-            val insets = windowInsets.getInsets(androidx.core.view.WindowInsetsCompat.Type.systemBars() or androidx.core.view.WindowInsetsCompat.Type.ime())
-            view.setPadding(0, insets.top, 0, insets.bottom)
-            androidx.core.view.WindowInsetsCompat.CONSUMED
-        }
-        
-        bottomNav.setOnItemSelectedListener { item ->
-            val fragment: Fragment = when (item.itemId) {
-                R.id.nav_home -> HomeFragment()
-                R.id.nav_notes -> NotesFragment()
-                R.id.nav_downloads -> DownloadsFragment()
-                R.id.nav_settings -> SettingsFragment()
-                else -> HomeFragment()
-            }
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.nav_host_fragment, fragment)
-                .commit()
-            true
+
+        // Initialize SQLCipher Room database and repository
+        val database = AppDatabase.getDatabase(this)
+        repository = NoteRepository(database.noteDao())
+        vaultManager = KeystoreVaultManager(this)
+
+        // Cold-launch destination: If user has configured a PIN, lock vault on start
+        val startDestination = if (vaultManager.hasPinSet() && !vaultManager.isUnlocked) {
+            Screen.Vault.route
+        } else {
+            Screen.Dashboard.route
         }
 
-        if (savedInstanceState == null) {
-            bottomNav.selectedItemId = R.id.nav_home
+        setContent {
+            GuptrixTheme {
+                GuptrixNavHost(
+                    repository = repository,
+                    vaultManager = vaultManager,
+                    startDestination = startDestination,
+                    onTriggerBiometrics = { triggerBiometricPrompt() }
+                )
+            }
         }
     }
 
-    fun openFileChooser(callback: android.webkit.ValueCallback<Array<android.net.Uri>>, acceptType: String?) {
-        // Kept for legacy compatibility if WebView needs it directly from Activity
+    private fun triggerBiometricPrompt() {
+        val executor = ContextCompat.getMainExecutor(this)
+        val prompt = BiometricPrompt(
+            this,
+            executor,
+            object : BiometricPrompt.AuthenticationCallback() {
+                override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) {
+                    super.onAuthenticationSucceeded(result)
+                    vaultManager.unlockByBiometrics()
+                }
+
+                override fun onAuthenticationError(errorCode: Int, errString: CharSequence) {
+                    super.onAuthenticationError(errorCode, errString)
+                }
+
+                override fun onAuthenticationFailed() {
+                    super.onAuthenticationFailed()
+                }
+            }
+        )
+
+        val promptInfo = BiometricPrompt.PromptInfo.Builder()
+            .setTitle("Unlock Guptrix Vault")
+            .setSubtitle("Confirm your identity to decrypt your notes")
+            .setNegativeButtonText("Use PIN")
+            .build()
+
+        prompt.authenticate(promptInfo)
     }
 }
