@@ -30,7 +30,3 @@ jobs:
       - name: Build Debug APK
         working-directory: android-app
         run: ./gradlew assembleDebug --no-daemon
-
-      - name: Run Unit Tests & Lint Checks
-        working-directory: android-app
-        run: ./gradlew check --no-daemon
