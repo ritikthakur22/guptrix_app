@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace = "com.guptrix.app"
-    compileSdk = 36
+    compileSdk = 34
 
     val keystorePath = System.getenv("KEYSTORE_PATH") ?: "../keystore/release.keystore"
     val keystoreFile = file(keystorePath)
@@ -14,7 +14,6 @@ android {
     signingConfigs {
         create("release") {
             if (keystoreFile.exists()) {
-                storeFile = keystoreFile
                 storePassword = System.getenv("KEYSTORE_PASSWORD") ?: ""
                 keyAlias = System.getenv("KEY_ALIAS") ?: "guptrix"
                 keyPassword = System.getenv("KEY_PASSWORD") ?: ""
@@ -24,8 +23,8 @@ android {
 
     defaultConfig {
         applicationId = "com.guptrix.app"
-        minSdk = 23
-        targetSdk = 36
+        minSdk = 26
+        targetSdk = 34
         versionCode = 5
         versionName = "1.0.4"
     }
@@ -99,6 +98,8 @@ dependencies {
     implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.11.0")
+    implementation("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
+    implementation("androidx.fragment:fragment-ktx:1.6.2")
 
     // Testing
     testImplementation("junit:junit:4.13.2")
